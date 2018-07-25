@@ -4,10 +4,7 @@ import { getSlots } from "../../../dux/reducer";
 
 class Day7Slots extends Component {
   componentDidMount() {
-    let days = this.props.day.indexOf(new Date().getDay());
-    console.log(days);
-    let day = new Date().getDay();
-    this.props.getSlots(day);
+    this.props.getSlots(this.props.today);
   }
   render() {
     let slots = this.props.slots.map((e, i) => (
@@ -22,7 +19,8 @@ class Day7Slots extends Component {
 function mapStateToProps(state) {
   return {
     slots: state.slots,
-    day: state.day
+    weekdays: state.weekdays,
+    today: state.today
   };
 }
 

@@ -4,7 +4,17 @@ const GET_ALL_SLOTS = "GET_ALL_SLOTS";
 
 const initialState = {
   slots: [],
-  day: [0, 1, 2, 3, 4, 5, 6]
+  weekdays: [0, 1, 2, 3, 4, 5, 6],
+  today: new Date().getDay(),
+  daywords: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
 };
 
 export default function reducer(state = initialState, action) {
@@ -21,5 +31,3 @@ export function getSlots(day) {
     payload: axcall.getSlots(day)
   };
 }
-
-const day = new Date().getDay();
