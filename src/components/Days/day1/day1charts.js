@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getSlotTypes } from "../../../dux/reducer";
 
 class Day1Charts extends Component {
   render() {
@@ -13,7 +12,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { getSlotTypes }
-)(Day1Charts);
+export default connect(mapStateToProps)(Day1Charts);
