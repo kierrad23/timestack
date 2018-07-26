@@ -9,6 +9,12 @@ class Home extends Component {
         <button className="dash-but">
           <Link to="/dashboard"> Go to Dashboard</Link>
         </button>
+        <button
+          className="login-but"
+          onClick={() => (window.location.href = "http://localhost:3001/login")}
+        >
+          Login
+        </button>
         <div className="welcome">
           <h3> Time Stack</h3>
         </div>
