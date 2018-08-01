@@ -40,16 +40,21 @@ passport.serializeUser((user, done) => {
   db.getUserByAuthId([user.id]).then(dbuser => {
     if (!dbuser[0]) {
       db.createUserByAuthId([user.displayName || user.nickname, user.id]).then(
-        () => {
+        newuserid => {
+          //console.log("*~~~~~**~~~~~*newuser*~~~~~**~~~~~*", newuserid);
           return done(null, {
-            userid: user.id,
+            userid: newuserid[0].id,
+            authid: user.id,
             name: user._json.name
           });
         }
       );
     } else {
+      // console.log("*~~~~~**~~~~~*existing user*~~~~~**~~~~~*", dbuser[0].id);
+
       return done(null, {
-        userid: user.id,
+        userid: dbuser[0].id,
+        authid: user.id,
         name: user._json.name
       });
     }
@@ -58,7 +63,13 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
-
+const authenticated = (req, res, next) => {
+  if (!req.user) {
+    return res.redirect("/login");
+  } else {
+    next();
+  }
+};
 app.get(
   "/login",
   passport.authenticate("auth0", {
@@ -67,7 +78,9 @@ app.get(
   })
 );
 
+app.get("/api/checkuser", ctrl.getUser);
 app.get("/api/dashboard/:day", ctrl.getSlots);
+app.post("/api/addslot", ctrl.addSlot);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(port));

@@ -17,6 +17,9 @@ import Day5Charts from "../Days/day5/day5charts";
 import Day6Charts from "../Days/day6/day6charts";
 import Day7Charts from "../Days/day7/day7charts";
 
+import { connect } from "react-redux";
+import { checkUser } from "../../dux/reducer";
+
 class Dashboard extends Component {
   render() {
     return (
@@ -51,9 +54,9 @@ class Dashboard extends Component {
             <Link to="/dashboard" className="viewlinks">
               Today
             </Link>
-            <Link to="/dashboard/weekview" className="viewlinks">
+            {/* <Link to="/dashboard/weekview" className="viewlinks">
               Entire Week
-            </Link>
+            </Link> */}
             <Switch>
               <Route exact path="/dashboard" component={Day7Charts} />
               <Route path="/dashboard/day1" component={Day1Charts} />
@@ -83,4 +86,16 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({ user: state.user });
+
+// export default withRouter(
+//   connect(
+//     mapStateToProps,
+//     { checkUser }
+//   )(Dashboard)
+// );
+// export default Dashboard;
+export default connect(
+  mapStateToProps,
+  { checkUser }
+)(Dashboard);
