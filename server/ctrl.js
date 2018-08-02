@@ -7,21 +7,37 @@ const getUser = (req, res, next) => {
 const getSlots = (req, res, next) => {
   const db = req.app.get("db");
   db.slots
-    .getSlots([req.user.authid, parseInt(req.params.day)])
-    .then(slots => res.status(200).send(slots));
+    .getSlots([29, req.params.date])
+    .then(slots => res.status(200).send(slots))
+    .catch(err => res.status(500));
 };
 
 const addSlot = (req, res, next) => {
   const db = req.app.get("db");
-  const { event, minutes, day } = req.body;
-  // console.log(event, minutes, day);
+  const { event, minutes, date } = req.body;
   db.slots
-    .addSlot([req.user.userid, event, minutes, day, date])
+    .addSlot([req.user.userid, event, minutes, date])
+    .then(slots => res.status(200).send(slots))
+    .catch(err => res.status(500));
+};
+const deleteSlot = (req, res, next) => {
+  const db = req.app.get("db");
+  db.slots
+    .deleteSlot([req.params.slotid])
+    .then(slots => res.status(200).send(slots))
+    .catch(err => res.status(500));
+};
+const updateSlot = (req, res, next) => {
+  const db = req.app.get("db");
+  db.slots
+    .updateSlot([req.params.slotid, req.body.minutes])
     .then(slots => res.status(200).send(slots))
     .catch(err => res.status(500));
 };
 module.exports = {
   getSlots,
   getUser,
-  addSlot
+  addSlot,
+  deleteSlot,
+  updateSlot
 };

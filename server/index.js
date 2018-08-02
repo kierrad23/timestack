@@ -79,8 +79,10 @@ app.get(
 );
 
 app.get("/api/checkuser", ctrl.getUser);
-app.get("/api/dashboard/:day", ctrl.getSlots);
+app.get("/api/dashboard/:date", ctrl.getSlots);
+app.delete("/api/deleteslot/:slotid", ctrl.deleteSlot);
 app.post("/api/addslot", ctrl.addSlot);
+app.put("/api/updateslot/:slotid", ctrl.updateSlot);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(port));

@@ -4,6 +4,8 @@ import axios from "axios";
 const GET_ALL_SLOTS = "GET_ALL_SLOTS";
 const GET_USER = "GET_USER";
 const ADD_SLOT = "ADD_SLOT";
+const DELETE_SLOT = "DELETE_SLOT";
+const UPDATE_SLOT = "UPDATE_SLOT";
 
 const initialState = {
   user: "",
@@ -29,14 +31,18 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { slots: action.payload });
     case `${ADD_SLOT}_FULFILLED`:
       return Object.assign({}, state, { slots: action.payload });
+    case `${DELETE_SLOT}_FULFILLED`:
+      return Object.assign({}, state, { slots: action.payload });
+    case `${UPDATE_SLOT}_FULFILLED`:
+      return Object.assign({}, state, { slots: action.payload });
     default:
       return state;
   }
 }
-export function getSlots(day) {
+export function getSlots(date) {
   return {
     type: GET_ALL_SLOTS,
-    payload: axios.get(`/api/dashboard/${day}`).then(res => res.data)
+    payload: axios.get(`/api/dashboard/${date}`).then(res => res.data)
   };
 }
 
@@ -51,6 +57,21 @@ export function addSlot(event, minutes, day, date) {
     type: ADD_SLOT,
     payload: axios
       .post("/api/addslot", { event, minutes, day, date })
+      .then(res => res.data)
+  };
+}
+export function deleteSlot(slotid) {
+  return {
+    type: DELETE_SLOT,
+    payload: axios.delete(`/api/deleteslot/${slotid}`).then(res => res.data)
+  };
+}
+
+export function updateSlot(slotid, minutes) {
+  return {
+    type: UPDATE_SLOT,
+    payload: axios
+      .put(`/api/updateslot/${slotid}`, { minutes })
       .then(res => res.data)
   };
 }
