@@ -10,7 +10,7 @@ class Router extends Component {
   render() {
     let = {user , path,component} = this.props
     return 
-    user ? <Route path={path} component={component}/> : window.location.replace("http://localhost:3001/login")
+    user ? <Route path={path} component={component}/> : window.location.replace(process.env.REACT_LOGIN)
   }
 }
 

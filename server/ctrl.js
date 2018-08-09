@@ -1,13 +1,16 @@
 const getUser = (req, res, next) => {
   const db = req.app.get("db");
-  db.getUserByAuthId([req.user == undefined ? undefined : req.user.authid])
+  db.getUserByAuthId([req.user === undefined ? undefined : req.user.authid])
     .then(dbuser => res.status(200).send(dbuser[0]))
     .catch(err => res.status(500));
+};
+const logout = (req, res, next) => {
+  req.session.destroy(() => res.redirect(process.env.REACT_LOGOUT_REDIRECT));
 };
 const getSlots = (req, res, next) => {
   const db = req.app.get("db");
   db.slots
-    .getSlots([29, req.params.date])
+    .getSlots([req.user.userid, req.params.date])
     .then(slots => res.status(200).send(slots))
     .catch(err => res.status(500));
 };
@@ -23,7 +26,7 @@ const addSlot = (req, res, next) => {
 const deleteSlot = (req, res, next) => {
   const db = req.app.get("db");
   db.slots
-    .deleteSlot([req.params.slotid])
+    .deleteSlot([req.params.slotid, req.user.userid])
     .then(slots => res.status(200).send(slots))
     .catch(err => res.status(500));
 };
@@ -34,10 +37,12 @@ const updateSlot = (req, res, next) => {
     .then(slots => res.status(200).send(slots))
     .catch(err => res.status(500));
 };
+
 module.exports = {
   getSlots,
   getUser,
   addSlot,
   deleteSlot,
-  updateSlot
+  updateSlot,
+  logout
 };

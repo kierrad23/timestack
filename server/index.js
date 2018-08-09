@@ -8,6 +8,8 @@ const massive = require("massive");
 require("dotenv").config();
 const ctrl = require("./ctrl");
 
+app.use(express.static(`${__dirname}/../build`));
+
 app.use(bp.json());
 
 app.use(
@@ -41,7 +43,6 @@ passport.serializeUser((user, done) => {
     if (!dbuser[0]) {
       db.createUserByAuthId([user.displayName || user.nickname, user.id]).then(
         newuserid => {
-          //console.log("*~~~~~**~~~~~*newuser*~~~~~**~~~~~*", newuserid);
           return done(null, {
             userid: newuserid[0].id,
             authid: user.id,
@@ -50,8 +51,6 @@ passport.serializeUser((user, done) => {
         }
       );
     } else {
-      // console.log("*~~~~~**~~~~~*existing user*~~~~~**~~~~~*", dbuser[0].id);
-
       return done(null, {
         userid: dbuser[0].id,
         authid: user.id,
@@ -77,12 +76,18 @@ app.get(
     failureRedirect: "/login"
   })
 );
+app.get("/logout", ctrl.logout);
 
 app.get("/api/checkuser", ctrl.getUser);
+
 app.get("/api/dashboard/:date", ctrl.getSlots);
 app.delete("/api/deleteslot/:slotid", ctrl.deleteSlot);
 app.post("/api/addslot", ctrl.addSlot);
 app.put("/api/updateslot/:slotid", ctrl.updateSlot);
 
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(port));

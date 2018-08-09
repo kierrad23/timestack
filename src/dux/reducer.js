@@ -1,4 +1,3 @@
-// import * as axcall from "./calls";
 import axios from "axios";
 
 const GET_ALL_SLOTS = "GET_ALL_SLOTS";
@@ -6,11 +5,11 @@ const GET_USER = "GET_USER";
 const ADD_SLOT = "ADD_SLOT";
 const DELETE_SLOT = "DELETE_SLOT";
 const UPDATE_SLOT = "UPDATE_SLOT";
+const LOGOUT = "LOGOUT";
 
 const initialState = {
   user: "",
   slots: [],
-  weekdays: [0, 1, 2, 3, 4, 5, 6],
   today: new Date().getDay(),
   daywords: [
     "Sunday",
@@ -73,5 +72,11 @@ export function updateSlot(slotid, minutes) {
     payload: axios
       .put(`/api/updateslot/${slotid}`, { minutes })
       .then(res => res.data)
+  };
+}
+export function logout() {
+  return {
+    type: LOGOUT,
+    payload: axios.post("/logout").then(res => res.data)
   };
 }

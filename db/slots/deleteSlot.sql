@@ -1,2 +1,2 @@
 DELETE FROM slots 
-WHERE userid = 29 AND id = $1 
+WHERE userid = $2 AND id = $1 
