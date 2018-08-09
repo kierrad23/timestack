@@ -11,7 +11,7 @@ class Home extends Component {
         </button>
         <button
           className="login-but"
-          onClick={() => (window.location.href = process.env.REACT_LOGIN)}
+          onClick={() => (window.location.href = process.env.REACT_APP_LOGIN)}
         >
           Login
         </button>

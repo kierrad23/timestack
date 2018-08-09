@@ -65,7 +65,9 @@ class Dashboard extends Component {
           <Link to="/random"> Goals</Link>
           <Link
             to="/"
-            onClick={() => window.location.replace(process.env.REACT_LOGOUT)}
+            onClick={() =>
+              (window.location.href = process.env.REACT_APP_LOGOUT)
+            }
           >
             Logout
           </Link>
