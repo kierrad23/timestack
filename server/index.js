@@ -72,8 +72,8 @@ const authenticated = (req, res, next) => {
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/dashboard",
-    failureRedirect: "http://localhost:3000/#/login"
+    successRedirect: process.env.SUCCESS,
+    failureRedirect: process.env.FAIL
     // successRedirect: "/#/dashboard",
     // failureRedirect: "/#/login"
   })
