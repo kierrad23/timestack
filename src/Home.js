@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 class Home extends Component {
   render() {
-    // console.log(typeof process.env.REACT_APP_LOGIN);
     return (
       <div className="main">
         <button className="dash-but">

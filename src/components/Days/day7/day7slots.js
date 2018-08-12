@@ -13,10 +13,12 @@ class Day7Slots extends Component {
     super();
     this.state = {
       event: "",
-      hour: 0,
+      addhour: 0,
       optionhour: 0,
-      minutes: 0,
+      updatehour: 0,
+      addminutes: 0,
       optionminutes: 0,
+      updateminutes: 0,
       day: new Date().getDay(),
       editFlag: false,
       editId: null
@@ -28,19 +30,14 @@ class Day7Slots extends Component {
     this.props.getSlots(date);
   }
   handleEventAdd() {
-    let { event, hour, minutes, day } = this.state;
-    let finalminutes = +hour * 60 + +minutes;
-    this.props
-      .addSlot(event, finalminutes, day, moment().format("YYYY-MM-DD"))
-      .then(() => this.setState({ event: "", hour: 0, minutes: 0 }));
+    let { event, addhour, addminutes } = this.state;
+    let finalminutes = +addhour * 60 + +addminutes;
+    this.props.addSlot(event, finalminutes, moment().format("YYYY-MM-DD"));
   }
 
   handleDelete(id) {
     const date = moment().format("YYYY-MM-DD");
-
-    this.props.deleteSlot(id).then(() => {
-      this.props.getSlots(date);
-    });
+    this.props.deleteSlot(id, date);
   }
   handleFlag(id, mins) {
     let hours = moment.duration(mins, "minutes")._data.hours;
@@ -50,24 +47,19 @@ class Day7Slots extends Component {
       editId: id,
       optionhour: hours,
       optionminutes: minutes,
-      hour: hours,
-      minutes
+      updatehour: hours,
+      updateminutes: minutes
     });
   }
   handleUpdate(id) {
     const date = moment().format("YYYY-MM-DD");
-    let { hour, minutes } = this.state;
-    let totalmins = +hour * 60 + +minutes;
-    console.log("~~~~~*INSIDE HANDLE UPDATE*~~~~~~", this.props.slots);
-    this.props.updateSlot(id, totalmins).then(() => {
-      console.log("~~~~~*AFTER UPDATE REQUEST*~~~~~~", this.props.slots);
-      this.props.getSlots(date);
-      console.log("~~~~~*AFTER GETTING SLOTS*~~~~~~", this.props.slots);
-      this.setState({ editFlag: false, event: "", hour: 0, minutes: 0 });
+    let { updatehour, updateminutes } = this.state;
+    let totalmins = +updatehour * 60 + +updateminutes;
+    this.props.updateSlot(id, totalmins, date).then(() => {
+      this.setState({ editFlag: false });
     });
   }
   render() {
-    console.log(this.props.slots);
     let slots = this.props.slots.map((e, i) => (
       <div key={i}>
         <span onDoubleClick={() => this.handleFlag(e.id, e.minutes)}>
@@ -76,7 +68,9 @@ class Day7Slots extends Component {
             ` ${hour(e.minutes)} ${minute(e.minutes)}`
           ) : this.state.editFlag && this.state.editId === e.id ? (
             <span>
-              <select onChange={e => this.setState({ hour: e.target.value })}>
+              <select
+                onChange={e => this.setState({ updatehour: e.target.value })}
+              >
                 <option>hr</option>
                 {this.state.optionhour === 0 ? (
                   <option selected>0</option>
@@ -145,7 +139,7 @@ class Day7Slots extends Component {
                 )}
               </select>
               <select
-                onChange={e => this.setState({ minutes: e.target.value })}
+                onChange={e => this.setState({ updateminutes: e.target.value })}
               >
                 {this.state.optionminutes === 0 ? (
                   <option selected>0</option>
@@ -232,7 +226,7 @@ class Day7Slots extends Component {
           <option>Fitness</option>
           <option>Transporting</option>
         </select>
-        <select onChange={e => this.setState({ hour: e.target.value })}>
+        <select onChange={e => this.setState({ addhour: e.target.value })}>
           <option disabled selected hidden>
             hr
           </option>
@@ -250,7 +244,7 @@ class Day7Slots extends Component {
           <option>11</option>
           <option>12</option>
         </select>
-        <select onChange={e => this.setState({ minutes: e.target.value })}>
+        <select onChange={e => this.setState({ addminutes: e.target.value })}>
           <option disabled selected hidden>
             min
           </option>
@@ -276,7 +270,6 @@ class Day7Slots extends Component {
 function mapStateToProps(state) {
   return {
     slots: state.slots,
-    today: state.today,
     user: state.user
   };
 }

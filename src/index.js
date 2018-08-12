@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import store from "./dux/store";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Home from "./Home";
+import Notes from "./components/Notes/Notes";
+import Goals from "./components/Goals/Goals";
 import Page404 from "./components/Page404/Page404";
 import Router from "./components/Routing/Router";
 
@@ -16,6 +18,8 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={Home} />
         <Router path="/dashboard" component={Dashboard} />
+        <Router path="/notes" component={Notes} />
+        <Router path="/limits" component={Goals} />
         <Route path="*" component={Page404} />
       </Switch>
     </HashRouter>

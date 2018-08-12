@@ -8,7 +8,7 @@ import PreviousCharts from "../Days/charts";
 import TodayCharts from "../Days/day7/day7charts";
 
 import { connect } from "react-redux";
-import { checkUser, getSlots, logout } from "../../dux/reducer";
+import { getSlots, logout } from "../../dux/reducer";
 import moment from "moment";
 import jsPDF from "jspdf";
 import { CSVLink } from "react-csv";
@@ -61,8 +61,8 @@ class Dashboard extends Component {
       <div className="dash">
         <Menu>
           <a>Home</a>
-          <Link to="/random"> Notes</Link>
-          <Link to="/random"> Goals</Link>
+          <Link to="/notes"> Notes</Link>
+          <Link to="/limits"> Goals</Link>
           <Link
             to="/"
             onClick={() =>
@@ -173,5 +173,5 @@ const mapStateToProps = state => ({ user: state.user, slots: state.slots });
 
 export default connect(
   mapStateToProps,
-  { checkUser, getSlots, logout }
+  { getSlots, logout }
 )(Dashboard);

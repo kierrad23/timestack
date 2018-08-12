@@ -45,8 +45,7 @@ class Day7Charts extends Component {
         callbacks: {
           label: function(tooltipItem, data) {
             let mins = data.datasets[0]["data"][tooltipItem.index];
-            let dataobj = m.duration(mins, "minutes")._data;
-            return mins >= 60 ? `${dataobj.hours} hours` : `${mins} minutes`;
+            return `${hour(mins)} ${minute(mins)}`;
           }
         }
       }
@@ -70,3 +69,21 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Day7Charts);
+
+function hour(min) {
+  return min < 60 && typeof min === "number"
+    ? ""
+    : Math.floor(min / 60) === 1
+      ? "1 hour"
+      : typeof min === "number"
+        ? `${m.duration(min, "minutes")._data.hours} hours`
+        : "";
+}
+
+function minute(min) {
+  return min < 60 && typeof min === "number"
+    ? `${min} minutes`
+    : min % 60 === 0
+      ? ""
+      : `${min % 60} minutes`;
+}

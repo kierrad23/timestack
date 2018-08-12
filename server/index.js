@@ -74,18 +74,33 @@ app.get(
   passport.authenticate("auth0", {
     successRedirect: process.env.SUCCESS,
     failureRedirect: process.env.FAIL
-    // successRedirect: "/#/dashboard",
-    // failureRedirect: "/#/login"
   })
 );
 app.get("/logout", ctrl.logout);
 
 app.get("/api/checkuser", ctrl.getUser);
 
+// ~~~*** Slots ***~~~ //
+
 app.get("/api/dashboard/:date", ctrl.getSlots);
-app.delete("/api/deleteslot/:slotid", ctrl.deleteSlot);
+app.delete("/api/deleteslot", ctrl.deleteSlot);
 app.post("/api/addslot", ctrl.addSlot);
 app.put("/api/updateslot/:slotid", ctrl.updateSlot);
+
+// ~~~*** Notes ***~~~ //
+
+app.get("/api/notes/", ctrl.getNotes);
+app.delete("/api/deletenote/:noteid", ctrl.deleteNote);
+app.post("/api/addnote", ctrl.addNote);
+app.put("/api/updatenote/:noteid", ctrl.updateNote);
+
+// / ~~~*** Limits ***~~~ / /
+
+app.get("/api/limits/", ctrl.getLimits);
+app.delete("/api/deletelimit/:id", ctrl.deleteLimit);
+app.post("/api/addlimit", ctrl.addLimit);
+
+app.get("/api/slots/", ctrl.getAllSlots);
 
 const path = require("path");
 app.get("*", (req, res) => {

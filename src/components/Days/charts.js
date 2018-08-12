@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Doughnut } from "react-chartjs-2";
+import moment from "moment";
 import "./charts.css";
 
 class PreviousCharts extends Component {
@@ -19,7 +20,6 @@ class PreviousCharts extends Component {
     }
     function combineMinutes(eventmins) {
       return keyvaluepairsarray.reduce((acc, cur) => {
-        //console.log(cur, eventmins, cur[eventmins]);
         return Object.keys(cur)[0] === eventmins
           ? acc + cur[eventmins]
           : acc + 0;
@@ -44,8 +44,8 @@ class PreviousCharts extends Component {
       tooltips: {
         callbacks: {
           label: function(tooltipItem, data) {
-            console.log(data.datasets[0]["data"]);
-            return `${data.datasets[0]["data"]} minutes`;
+            let mins = data.datasets[0]["data"][tooltipItem.index];
+            return `${hour(mins)} ${minute(mins)}`;
           }
         }
       }
@@ -68,3 +68,21 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(PreviousCharts);
+
+function hour(min) {
+  return min < 60 && typeof min === "number"
+    ? ""
+    : Math.floor(min / 60) === 1
+      ? "1 hour"
+      : typeof min === "number"
+        ? `${moment.duration(min, "minutes")._data.hours} hours`
+        : "";
+}
+
+function minute(min) {
+  return min < 60 && typeof min === "number"
+    ? `${min} minutes`
+    : min % 60 === 0
+      ? ""
+      : `${min % 60} minutes`;
+}
