@@ -1,0 +1,129 @@
+.goal_main {
+  background: #44355b;
+  height: 101vh; }
+
+.message {
+  white-space: pre-line; }
+
+.bm-overlay {
+  background: white; }
+
+.bm-burger-button {
+  position: absolute;
+  left: 200px;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px; }
+
+.bm-burger-bars {
+  background: #3a7999; }
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px; }
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: white; }
+
+/* General sidebar styles */
+.bm-menu {
+  background: #44355b;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  overflow-y: hidden !important; }
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: white;
+  padding: 1.2em;
+  overflow-y: hidden; }
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+  padding: 30px; }
+
+.styled select {
+  background: transparent;
+  width: 150px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  height: 34px; }
+
+.styled {
+  margin: 50px;
+  margin-top: 125px;
+  width: 130px;
+  height: 34px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #152d3b; }
+
+.add_goal {
+  border: none;
+  cursor: pointer;
+  background: #3a7999;
+  color: #f2f2f2;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  margin-right: 5px; }
+
+.all_goals {
+  height: 700px;
+  width: 600px;
+  background: #152d3b;
+  margin-top: 75px;
+  margin-left: 200px;
+  border-radius: 4%;
+  border: solid 2px white; }
+
+.below_menu {
+  display: flex;
+  justify-content: space-evenly; }
+
+.show_but {
+  width: 90px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  background: #3a7999;
+  color: #f2f2f2;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  margin-right: 5px;
+  margin-left: 20px;
+  margin-top: 100px; }
+
+.delete_goal {
+  border: none;
+  cursor: pointer;
+  background: #3a7999;
+  color: #f2f2f2;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  margin-right: 5px; }
+
+.add_goal_cont {
+  text-align: center; }
+
+.notification-container {
+  max-width: 200px; }
+
+.each_goal {
+  padding: 10px 20px; }
+
+.goals_head {
+  font-size: 56px;
+  text-align: center; }

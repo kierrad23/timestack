@@ -1,0 +1,106 @@
+.whole_cont {
+  background: #152d3b;
+  display: flex;
+  flex-direction: column; }
+
+.text_box {
+  width: 700px;
+  height: 150px;
+  margin-left: 60px; }
+
+.edit_box {
+  margin-top: 10px;
+  width: 650px;
+  height: 150px; }
+
+.new_note {
+  text-align: center;
+  margin: 20px 0; }
+
+textarea {
+  resize: none;
+  font-size: 14px;
+  border-radius: 10px; }
+
+.header {
+  font-size: 40px;
+  margin-bottom: 20px; }
+
+.notes {
+  height: 700px;
+  width: 700px;
+  background-color: #363537;
+  border-radius: 4%;
+  margin: 0 auto;
+  border: 2px solid white; }
+
+.each_note {
+  padding: 10px 20px; }
+
+.bm-overlay {
+  background: white; }
+
+.bm-burger-button {
+  position: absolute;
+  left: 200px;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px; }
+
+.bm-burger-bars {
+  background: #3a7999; }
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px; }
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: white; }
+
+/* General sidebar styles */
+.bm-menu {
+  background: #44355b;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  overflow-y: hidden !important; }
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: white;
+  padding: 1.2em;
+  overflow-y: hidden; }
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+  padding: 30px; }
+
+.delete,
+.edit,
+.submit {
+  border: none;
+  cursor: pointer;
+  background: #44355b;
+  color: #f2f2f2;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  margin-right: 5px; }
+
+.add_but {
+  border: none;
+  cursor: pointer;
+  background: #44355b;
+  color: #f2f2f2;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  bottom: 13px;
+  margin-left: 5px; }

@@ -3,7 +3,7 @@ $mix: mix(mediumvioletred, darkred);
   height: 100vh;
   width: 100vw;
   text-align: center;
-  background-color: grey;
+  background-color: #363537;
 }
 .week_cont {
   display: flex;
@@ -11,10 +11,11 @@ $mix: mix(mediumvioletred, darkred);
   justify-content: space-evenly;
   & > div {
     border-radius: 4%;
+    border: 1px solid white;
     height: 200px;
     width: 200px;
     margin-top: 50px;
-    background-color: $mix;
+    background-color: #152d3b;
   }
 }
 .slot_chart_cont {
@@ -23,16 +24,17 @@ $mix: mix(mediumvioletred, darkred);
   justify-content: space-around;
 }
 .chart_cont {
-  height: 500px;
+  height: 470px;
   width: 650px;
-  background-color: $mix;
+  background-color: lighten(#152d3b, 20%);
   border: 5px solid black;
   border-radius: 4%;
 }
 .slot_cont {
-  height: 500px;
+  height: 470px;
   width: 450px;
-  background-color: darkred;
+  background-color: lighten(#152d3b, 20%);
+  border: 5px solid black;
   border: 5px solid black;
   border-radius: 4%;
   box-shadow: inset 0 0 40px #000000;
@@ -59,7 +61,7 @@ $mix: mix(mediumvioletred, darkred);
 }
 
 .bm-burger-bars {
-  background: purple;
+  background: #3a7999;
 }
 
 /* Position and sizing of clickable cross button */
@@ -70,12 +72,12 @@ $mix: mix(mediumvioletred, darkred);
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: green;
+  background: white;
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background: yellow;
+  background: #44355b;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   overflow-y: hidden !important;
@@ -83,7 +85,7 @@ $mix: mix(mediumvioletred, darkred);
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: orange;
+  color: white;
   padding: 0.8em;
   overflow-y: hidden;
 }
@@ -92,4 +94,38 @@ $mix: mix(mediumvioletred, darkred);
 .bm-item {
   display: inline-block;
   padding: 30px;
+}
+
+.transition-enter {
+  transform: scale(0);
+}
+.transition-enter-active {
+  transform: scale(1);
+  transition: transform 800ms ease;
+}
+.transition-exit {
+  transform: scale(1);
+}
+.transition-exit-active {
+  transform: scale(0);
+  transition: transform 800ms ease;
+}
+.export {
+  border: none;
+  cursor: pointer;
+  background: #44355b;
+  color: #f2f2f2;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.day_link {
+  padding-top: 20px !important;
+}
+
+.each_slot {
+  padding: 10px;
 }

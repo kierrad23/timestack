@@ -35,7 +35,7 @@ class PreviousCharts extends Component {
       datasets: [
         {
           data: Object.values(this.handleChartData(this.props.slots)),
-          backgroundColor: ["blue", "purple", "red"]
+          backgroundColor: ["#eca72c", "#44355b", "#61ba91", "white", "#282729"]
         }
       ],
       labels: Object.keys(this.handleChartData(this.props.slots))
@@ -48,7 +48,8 @@ class PreviousCharts extends Component {
             return `${hour(mins)} ${minute(mins)}`;
           }
         }
-      }
+      },
+      legend: { display: true, labels: { fontColor: "white" } }
     };
     return (
       <div className="myChart">

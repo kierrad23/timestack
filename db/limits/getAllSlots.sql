@@ -5,4 +5,5 @@ FROM
 WHERE
 userid = $1 AND
       date >= $2 
-  AND date <=  $3;
+  AND date <=  $3
+  ORDER BY date::DATE ASC;

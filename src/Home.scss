@@ -1,3 +1,6 @@
+$color3: rgba(133, 255, 199, 1);
+$color4: rgba(151, 72, 251, 1);
+$color5: rgba(230, 204, 190, 1);
 .main {
   background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/viewing-business-charts-and-diagrams-background-working-on-laptop-computer-desk_sg3brgce__F0000.png");
   height: 101vh;
@@ -6,51 +9,60 @@
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
-  overflow-y: hidden; }
+  overflow-y: hidden;
+}
 
 .welcome {
   margin: 300px auto;
   height: 200px;
   width: 550px;
   color: black;
-  font-weight: 700; }
-
+  font-weight: 700;
+}
 .timestack {
-  font-size: 96px; }
+  font-size: 96px;
+}
 
 .step_up {
   font-size: 50px;
-  margin-bottom: 10px; }
-
+  margin-bottom: 10px;
+  //   margin-left: 20px;
+}
 .get_started {
   margin-left: 40%;
   margin-top: 20px;
   height: 50px;
-  width: 100px; }
-
+  width: 100px;
+}
 .nav {
   height: 50px;
   width: 101vw;
   background-color: transparent;
   display: flex;
   flex-direction: row;
-  justify-content: space-between; }
-  .nav:first-child {
-    margin-top: 20px; }
-  .nav button:nth-child(n + 2) {
-    margin-bottom: 10px; }
-  .nav > h2 {
-    margin-left: 20px; }
-
+  justify-content: space-between;
+  //   border-bottom: 3px solid black;
+  &:first-child {
+    margin-top: 20px;
+  }
+  button:nth-child(n + 2) {
+    margin-bottom: 10px;
+  }
+  & > h2 {
+    margin-left: 20px;
+  }
+}
 .shadow {
-  box-shadow: 0px 7px 8px -3px; }
+  box-shadow: 0px 7px 8px -3px;
+}
 
 .login-but {
-  margin-right: 35px; }
-
+  margin-right: 35px;
+}
 .logo {
   font-weight: 700;
-  font-style: italic; }
+  font-style: italic;
+}
 
 .get_started {
   border: none;
@@ -62,8 +74,8 @@
   position: relative;
   box-sizing: border-box;
   transition: all 500ms ease;
-  transform-style: preserve-3d; }
-  .get_started::after {
+  transform-style: preserve-3d;
+  &::after {
     top: -100%;
     left: 0px;
     width: 100%;
@@ -72,10 +84,13 @@
     border-radius: 5px;
     content: "Let's Get Started";
     transform-origin: left bottom;
-    transform: rotateX(90deg); }
-  .get_started:hover {
+    transform: rotateX(90deg);
+  }
+  &:hover {
     transform-origin: center bottom;
-    transform: rotateX(-90deg) translateY(100%); }
+    transform: rotateX(-90deg) translateY(100%);
+  }
+}
 
 .dash-but {
   height: 42px;
@@ -87,8 +102,8 @@
   border-radius: 5px;
   position: relative;
   box-sizing: border-box;
-  transition: all 200ms ease; }
-
+  transition: all 200ms ease;
+}
 .dash-but::before {
   content: "";
   position: absolute;
@@ -98,10 +113,11 @@
   height: 0px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 5px;
-  transition: all 0.5s ease; }
-
+  transition: all 0.5s ease;
+}
 .dash-but:hover::before {
-  height: 42px; }
+  height: 42px;
+}
 
 .login-but {
   border: none;
@@ -112,8 +128,8 @@
   border-radius: 5px;
   position: relative;
   box-sizing: border-box;
-  transition: all 200ms ease; }
-
+  transition: all 200ms ease;
+}
 .login-but::before {
   content: "";
   position: absolute;
@@ -123,7 +139,8 @@
   height: 0px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 5px;
-  transition: all 1s ease; }
-
+  transition: all 1s ease;
+}
 .login-but:hover::before {
-  height: 42px; }
+  height: 42px;
+}

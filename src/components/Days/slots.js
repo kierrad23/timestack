@@ -6,9 +6,9 @@ import m from "moment";
 class PreviousSlots extends Component {
   render() {
     let allslots = this.props.slots.map((e, i) => (
-      <div key={i}>
-        Event: {e.event}
+      <div className="each_slot" key={i}>
         Time:{` ${hour(e.minutes)} ${minute(e.minutes)}`}
+        Event: {e.event}
       </div>
     ));
     return (

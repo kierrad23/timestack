@@ -61,9 +61,9 @@ class Day7Slots extends Component {
   }
   render() {
     let slots = this.props.slots.map((e, i) => (
-      <div key={i}>
+      <div className="each_slot" key={i}>
         <span onDoubleClick={() => this.handleFlag(e.id, e.minutes)}>
-          Minutes :
+          Time :
           {!this.state.editFlag ? (
             ` ${hour(e.minutes)} ${minute(e.minutes)}`
           ) : this.state.editFlag && this.state.editId === e.id ? (
@@ -224,7 +224,7 @@ class Day7Slots extends Component {
           <option>Work</option>
           <option>School</option>
           <option>Fitness</option>
-          <option>Transporting</option>
+          <option>Transportation</option>
         </select>
         <select onChange={e => this.setState({ addhour: e.target.value })}>
           <option disabled selected hidden>

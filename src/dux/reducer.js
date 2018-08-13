@@ -7,6 +7,7 @@ const GET_SLOTS = "GET_SLOTS";
 const ADD_SLOT = "ADD_SLOT";
 const DELETE_SLOT = "DELETE_SLOT";
 const UPDATE_SLOT = "UPDATE_SLOT";
+const CLEAR_SLOTS = "CLEAR_SLOTS";
 
 const GET_ALL_NOTES = "GET_ALL_NOTES";
 const ADD_NOTE = "ADD_NOTE";
@@ -38,6 +39,8 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { slots: action.payload });
     case `${UPDATE_SLOT}_FULFILLED`:
       return Object.assign({}, state, { slots: action.payload });
+    case `${CLEAR_SLOTS}`:
+      return Object.assign({}, state, { slots: action.payload });
     case `${GET_ALL_NOTES}_FULFILLED`:
       return Object.assign({}, state, { notes: action.payload });
     case `${ADD_NOTE}_FULFILLED`:
@@ -47,7 +50,6 @@ export default function reducer(state = initialState, action) {
     case `${UPDATE_NOTE}_FULFILLED`:
       return Object.assign({}, state, { notes: action.payload });
     case `${GET_ALL_SLOTS}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, { allslots: action.payload });
     case `${GET_ALL_LIMITS}_FULFILLED`:
       return Object.assign({}, state, { limits: action.payload });
@@ -101,6 +103,13 @@ export function updateSlot(slotid, minutes, date) {
     payload: axios
       .put(`/api/updateslot/${slotid}`, { minutes, date })
       .then(res => res.data)
+  };
+}
+
+export function clearSlots() {
+  return {
+    type: CLEAR_SLOTS,
+    payload: []
   };
 }
 

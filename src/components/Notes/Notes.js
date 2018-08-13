@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getNotes, addNote, updateNote, deleteNote } from "../../dux/reducer";
 import moment from "moment";
+import { stack as Menu } from "react-burger-menu";
+import { Link } from "react-router-dom";
+import "./Notes.css";
 
 class Notes extends Component {
   constructor() {
@@ -35,40 +38,75 @@ class Notes extends Component {
   }
   render() {
     let notes = this.props.notes.map(e => (
-      <div key={e.id}>
+      <div className="each_note" key={e.id}>
         <p>{e.date}</p>
         <p>
           {this.state.editFlag && this.state.editId === e.id ? (
             <span>
-              <input
+              <textarea
+                className="edit_box"
                 onChange={e => this.setState({ notecopy: e.target.value })}
                 defaultValue={this.state.notecopy}
                 type="text"
               />
-              <button onClick={() => this.handleUpdate(e.id)}>Submit</button>
+
+              <button
+                className="submit"
+                onClick={() => this.handleUpdate(e.id)}
+              >
+                Submit
+              </button>
             </span>
           ) : (
             e.note
           )}
         </p>
-        <a onClick={() => this.props.deleteNote(e.id)}>Delete</a>
+        <button className="delete" onClick={() => this.props.deleteNote(e.id)}>
+          Delete
+        </button>
         {!this.state.editFlag && (
-          <button onClick={() => this.handleEdit(e.id, e.note)}>Edit</button>
+          <button
+            className="edit"
+            onClick={() => this.handleEdit(e.id, e.note)}
+          >
+            Edit
+          </button>
         )}
         {/* {this.state.editFlag && this.state.editId === e.id ? <input value={this.state.notecopy}type="text"/>:e.note} */}
       </div>
     ));
-    console.log(this.props.notes.map(e => e));
+    // console.log(this.props.notes.map(e => e));
     return (
-      <div>
-        <input
-          type="text"
-          value={this.state.note}
-          placeholder="Enter note here"
-          onChange={e => this.setState({ note: e.target.value })}
-        />
-        <button onClick={() => this.handleNewNote()}>Submit</button>
-        {notes}
+      <div className="whole_cont">
+        <Menu>
+          <Link to="/"> Home</Link>
+          <Link to="/dashboard"> Dashboard</Link>
+          <Link to="/limits"> Goals</Link>
+          <Link
+            to="/"
+            onClick={() =>
+              (window.location.href = process.env.REACT_APP_LOGOUT)
+            }
+          >
+            Logout
+          </Link>
+        </Menu>
+        <div className="new_note">
+          <h1 className="header">Notes</h1>
+          <div className="textbox_button">
+            <textarea
+              className="text_box"
+              type="text"
+              defaultValue={this.state.note}
+              placeholder="Enter new note here"
+              onChange={e => this.setState({ note: e.target.value })}
+            />
+            <button className="add_but" onClick={() => this.handleNewNote()}>
+              Add
+            </button>
+          </div>
+        </div>
+        <div className="notes">{notes}</div>
       </div>
     );
   }
