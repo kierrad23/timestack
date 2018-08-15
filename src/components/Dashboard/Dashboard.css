@@ -14,7 +14,7 @@
     height: 200px;
     width: 200px;
     margin-top: 50px;
-    background-color: #152d3b; }
+    background-color: #44355b; }
 
 .slot_chart_cont {
   display: flex;
@@ -26,7 +26,8 @@
   width: 650px;
   background-color: #306686;
   border: 5px solid black;
-  border-radius: 4%; }
+  border-radius: 4%;
+  box-shadow: inset 0 0 40px #000000; }
 
 .slot_cont {
   height: 470px;

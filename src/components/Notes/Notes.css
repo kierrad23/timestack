@@ -1,7 +1,8 @@
 .whole_cont {
   background: #152d3b;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  overflow: hidden; }
 
 .text_box {
   width: 700px;
@@ -32,7 +33,8 @@ textarea {
   background-color: #363537;
   border-radius: 4%;
   margin: 0 auto;
-  border: 2px solid white; }
+  border: 2px solid white;
+  overflow-y: auto; }
 
 .each_note {
   padding: 10px 20px; }
