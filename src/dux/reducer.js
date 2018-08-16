@@ -64,7 +64,7 @@ export default function reducer(state = initialState, action) {
 export function logout() {
   return {
     type: LOGOUT,
-    payload: axios.post("/logout").then(res => res.data)
+    payload: axios.post("/logout")
   };
 }
 export function checkUser() {

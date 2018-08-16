@@ -7,7 +7,8 @@ class Router extends Component {
   componentDidMount() {
     this.props.checkUser().then(() => {
       if (!this.props.user.authid) {
-        window.location.href = process.env.REACT_APP_LOGIN;
+        // window.location.href = process.env.REACT_APP_LOGIN;
+        console.log("here");
       }
     });
   }
