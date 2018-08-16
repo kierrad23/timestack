@@ -26,7 +26,6 @@ class Home extends Component {
         </nav>
 
         <div className="welcome wow zoomIn" data-wow-duration="4s">
-          {/* <h3 className="timestack"> Time Stack</h3> */}
           <h3 className="step_up"> Step Up Your Productivity</h3>
           <p>
             Introducing a new way to view where all your time is going. With
